@@ -1,0 +1,6 @@
+Get-Mailbox  -ResultSize Unlimited | Search-Mailbox -SearchQuery 'Subject:"::EXTERNAL::Bankofamerica payment notification" And Received:<$('01.01.2013') And Received:>$('01.01.2012')' -targetmailbox "Admin" -targetfolder "SearchResult" -logonly -loglevel full
+
+
+
+
+Get-Mailbox  -ResultSize Unlimited | Search-Mailbox -SearchQuery 'Subject:"::EXTERNAL::Bankofamerica payment notification" -DeleteContent

@@ -1,0 +1,32 @@
+Get-MailboxExportRequest
+
+Remove-MailboxExportRequest -Identity "Ayla\MailboxExport1"
+
+Get-MailboxExportRequest -Status Completed | Remove-MailboxExportRequest
+
+New-MailboxExportRequest -Mailbox alroberson -FilePath \\mx2cashub\PST\alroberson.pst
+New-MailboxExportRequest -Mailbox jrouse -FilePath \\mx2cashub\PST\jrouse.pst
+
+
+Get-MailboxImportRequest
+
+New-MailboxImportRequest -Mailbox Ayla -FilePath \\SERVER01\PSTFiles\Recovered.pst -TargetRootFolder "RecoveredFiles" -IncludeFolders "#Inbox#"
+
+
+New-MailboxImportRequest User2 -FilePath \\server\share\User1.pst -IsArchive -TargetRootFolder / 
+
+Remove-MailboxImportRequest -Identity "Ayla\MailboxImport1"
+
+
+#For a list of users, get the user list and put it in a *.txt list.  Create a powershell script with this:
+
+$content = get-content "C:\PST\Aliases.txt"
+
+foreach ($user in $content) 
+{
+
+New-MailboxExportRequest -Mailbox <user> -FilePath "\\DW-SERVER-01\PST\$user Mailbox.pst" 
+}
+
+open up an Exchange powershell prompt and execute it.
+

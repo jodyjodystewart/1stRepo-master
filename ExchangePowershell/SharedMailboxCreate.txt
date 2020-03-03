@@ -1,0 +1,6 @@
+New-mailbox sharedTest –shared –userprincipalname Sharedtest@somedomain.com
+
+
+
+
+New-Mailbox -Shared -Name "Sales Department" -DisplayName "Sales Department" -Alias Sales | Set-Mailbox -GrantSendOnBehalfTo MarketingSG | Add-MailboxPermission -User MarketingSG -AccessRights FullAccess -InheritanceType All

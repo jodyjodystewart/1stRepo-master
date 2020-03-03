@@ -1,0 +1,18 @@
+(Get-CASMailbox -ResultSize Unlimited | where {$_.OWAEnabled -eq $true}).count
+
+Number of accounts that can use OWA
+
+
+(Get-CASMailbox -ResultSize Unlimited | where {$_.ActiveSyncEnabled -eq $true}).count
+
+Number of accounts that have ActiveSync enabled
+
+
+get-recipient swnpm@ahom.com
+
+Provides the user or group account that uses the email address swnpm@ahom.com
+
+
+Copying users from one group to another:
+
+Get-DistributionGroupMember “Florida” -ResultSize Unlimited | Get-Mailbox | Add-DistributionGroupMember “GroupX”

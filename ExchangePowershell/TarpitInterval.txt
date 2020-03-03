@@ -1,0 +1,22 @@
+Default Interval:
+
+TarpitInterval  00:00:05
+
+MaxAcknowledgementDelay  00:00:30
+
+
+Here is how to read the VALUES from all receive Connector on your Exchange
+
+get-ReceiveConnector | select name,tarpitinterval, maxacknowledgementdelay
+
+ 
+
+Disabling the tarpit interval 
+
+Set-receiveconnector "internal_relay" -tarpitinterval 00:00:00 
+
+Disabling MaxAcknowledgement delay
+
+Set-receiveconnector " internal_relay " -maxacknowledgementdelay 0
+
+ 

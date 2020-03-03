@@ -1,0 +1,4 @@
+'amhome.com/AHP/Service Accounts/postmaster'|Search-Mailbox -DeleteContent
+
+
+get-mailbox -resultsize unlimited | Search-Mailbox -SearchQuery 'subject:"commission resolutions"' -DeleteContent

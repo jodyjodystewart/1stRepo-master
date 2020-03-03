@@ -1,0 +1,3 @@
+To create a shared mailbox named sharedTest with the user principal name (email address) SharedTest@amhome.com:
+
+New-mailbox sharedTest –shared –userprincipalname Sharedtest@amhome.com

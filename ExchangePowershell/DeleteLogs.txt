@@ -1,0 +1,37 @@
+EXAMPLE:
+
+
+forfiles /p "L:\Program Files\Microsoft\Exchange Server\V14\Mailbox\CustomerSC" /s /m *.log /c "cmd /c Del @path" /d -2
+
+forfiles /p "F:\Program Files\Microsoft\Exchange Server\V14\Mailbox\Exec1" /s /m *.log /c "cmd /c Del @path" /d -2
+
+forfiles /p "P:\Program Files\Microsoft\Exchange Server\V14\Mailbox\BranchOffice" /s /m *.log /c "cmd /c Del @path" /d -2
+
+forfiles /p "N:\Program Files\Microsoft\Exchange Server\V14\Mailbox\BillingCenter" /s /m *.log /c "cmd /c Del @path" /d -2
+
+forfiles /p "H:\Program Files\Microsoft\Exchange Server\V14\Mailbox\BrentwoodSC" /s /m *.log /c "cmd /c Del @path" /d -2
+
+forfiles /p "R:\Program Files\Microsoft\Exchange Server\V14\Mailbox\PublicFolder" /s /m *.log /c "cmd /c Del @path" /d -2
+
+forfiles /p "J:\Program Files\Microsoft\Exchange Server\V14\Mailbox\SleepSC" /s /m *.log /c "cmd /c Del @path" /d -2
+
+
+New-MoveRequest clambert -TargetDatabase 'SleepSupport' -BadItemLimit '400' -AcceptLargeDataLoss -IgnoreRuleLimitErrors
+
+New-MoveRequest jyoung21 -TargetDatabase 'SleepSupport' -BadItemLimit '400' -AcceptLargeDataLoss -IgnoreRuleLimitErrors
+New-MoveRequest scody2 -TargetDatabase 'SleepSupport' -BadItemLimit '400' -AcceptLargeDataLoss -IgnoreRuleLimitErrors
+New-MoveRequest jboone -TargetDatabase 'SleepSupport' -BadItemLimit '400' -AcceptLargeDataLoss -IgnoreRuleLimitErrors
+New-MoveRequest anash -TargetDatabase 'SleepSupport' -BadItemLimit '400' -AcceptLargeDataLoss -IgnoreRuleLimitErrors
+New-MoveRequest jagodwin -TargetDatabase 'SleepSupport' -BadItemLimit '400' -AcceptLargeDataLoss -IgnoreRuleLimitErrors
+New-MoveRequest ndeese -TargetDatabase 'SleepSupport' -BadItemLimit '400' -AcceptLargeDataLoss -IgnoreRuleLimitErrors
+New-MoveRequest jmcnulty -TargetDatabase 'SleepSupport' -BadItemLimit '400' -AcceptLargeDataLoss -IgnoreRuleLimitErrors
+New-MoveRequest cglasco -TargetDatabase 'SleepSupport' -BadItemLimit '400' -AcceptLargeDataLoss -IgnoreRuleLimitErrors
+New-MoveRequest tgabel -TargetDatabase 'SleepSupport' -BadItemLimit '400' -AcceptLargeDataLoss -IgnoreRuleLimitErrors
+
+
+
+new-mailboxrepairrequest -mailbox pjoyner -corruptiontype ProvisionedFolder,SearchFolder,AggregateCounts,Folderview
+
+Get-MailboxExportRequest|? {$_.RequestQueue -eq "BranchOffice"}
+
+Remove-MailboxExportRequest sarmstrong\MailboxExport1

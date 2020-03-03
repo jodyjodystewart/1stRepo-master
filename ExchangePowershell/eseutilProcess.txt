@@ -1,0 +1,4 @@
+1. eseutil -p "S:\Program Files\Microsoft\Exchange Server\V14\Mailbox\TermUsers\TermUsers.edb"
+2.  Cut old logs to a folder(delete old logs) 
+3.  set-mailboxdatabase TermUsers -AllowFileRestore:$true
+4.  mount-database TermUsers -force

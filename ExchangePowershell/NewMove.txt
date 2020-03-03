@@ -1,0 +1,4 @@
+New-MoveRequest cirving -TargetDatabase 'Field' -BadItemLimit '400' -AcceptLargeDataLoss -IgnoreRuleLimitErrors
+
+
+Get-Content C:\users.txt | New-MoveRequest -TargetDatabase TermUsers1
