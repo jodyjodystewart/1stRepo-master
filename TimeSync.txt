@@ -1,0 +1,10 @@
+w32tm /config /manualpeerlist:"172.25.10.30 us.pool.ntp.org" /syncfromflags:manual /reliable:yes /update
+
+net stop w32time
+
+net start w32time
+
+
+
+
+w32tm /config /manualpeerlist:us.pool.ntp.org,centos.pool.ntp.org /syncfromflags:manual /update

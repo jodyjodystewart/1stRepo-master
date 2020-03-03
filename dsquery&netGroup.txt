@@ -1,0 +1,7 @@
+dsquery user -samid "bochs_admin"|dsget user -memberof -expand
+
+
+
+net group "domain admins" /domain
+
+

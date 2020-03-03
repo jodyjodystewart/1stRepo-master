@@ -1,0 +1,14 @@
+Get-ADComputer -Filter {OperatingSystem -NotLike "*Server*"} | Select -Expand Name | Out-File C:\Test\Test.txt
+
+get-adcomputer -filter {operatingsystem -like"*xp*"} -properties operatingsystem | select name, operatingsystem | sort name and press Enter.
+
+
+
+Get-ADComputer -SearchBase 'OU=SSC,OU=Hjemme,dc=amhome,dc=com' -Filter '*' | Select -Expand Name
+
+
+
+Use this!!:
+get-adcomputer -Filter * -SearchBase "OU=SSC, DC=amhome, DC=com" | Select -Expand Name | Out-File C:\Computers.txt
+
+get-aduser -Filter * -SearchBase "OU=Terminated Users (Disabled), OU=AHP, DC=amhome, DC=com" |Select -Expand Name|Out-File C:\Users.txt

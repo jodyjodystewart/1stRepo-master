@@ -1,0 +1,1 @@
+dsquery * "CN=Jody Stewart,CN=Users,DC=amhome,DC=com" -attr WhenCreated WhenChanged

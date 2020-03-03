@@ -1,0 +1,236 @@
+
+Skip to end of metadata
+
+    Created by Frost, Ben, last modified by Singh, Manminder on Jul 03, 2019
+
+Go to start of metadata
+
+    Centos
+        Add to Domain
+        Remove from Domain
+        Enable MFA and point to an Azure radius server 
+    Ubuntu
+        Add to Domain
+        Remove from Domain
+
+Centos
+Add to Domain
+
+    Install packages:
+
+        yum install sssd realmd oddjob oddjob-mkhomedir adcli samba-common samba-common-tools krb5-workstation openldap-clients policycoreutils-python -y
+
+    Point resolver to DNS:
+        PGAC Domain
+
+            vi /etc/resolv.conf
+            search pgac.com
+            nameserver 172.23.2.98
+            nameserver 172.23.2.96
+        ERBB Domain
+            vi /etc/resolv.conf
+            search erbb.pgc
+            nameserver 172.23.30.11
+            nameserver 172.23.30.12
+    Join CentOS to Windows Domain
+
+        realm join --user=administrator pgac.com
+            To verify a successful join:
+                realm list
+            If not successful add -v to end of realm command for a verbose output
+            This adds the machine to the "Computers" OU in Active Directory
+
+    To use short usernames vs FQDN
+        vi /etc/sssd/sssd.conf 
+        Change: 
+
+            use_fully_qualified_names = True
+            fallback_homedir = /home/%u@%d
+
+        To:
+
+            use_fully_qualified_names = False
+            fallback_homedir = /home/%u
+
+        Restart SSSD
+
+            systemctl restart sssd
+    Test ssh access
+        ssh username@localhost
+            Where username is a valid AD username
+            To check group membership
+                id
+    Control server access
+        Standard Configuration:
+            realm permit -g "VMware-Linux Admins"
+            realm permit -g "Domain Admins"
+        Options:
+            Grant access to a user:
+                realm permit username
+            Grant access to a group:
+                pgac
+                    realm permit -g group@pgac.com
+                erbb
+                    realm permit -g group@erbb.pgc
+            Reset or grant everyone access:
+                realm permit --all
+            Remove a user:
+                realm permit --withdraw username
+            List access permissions
+                realm list
+                Eg: login-policy: allow-realm-logins
+    Grant Sudoers access
+        vi /etc/sudoers.d/sudoers
+
+            %vmware-linux\ admins@pgac.com ALL=(ALL) ALL
+            %domain\ admins@pgac.com ALL=(ALL) ALL
+        Test logging into server with domain creds and "sudo su" to root
+
+Remove from Domain
+
+    realm leave pgac.com
+
+
+Enable MFA and point to an Azure radius server 
+
+    PAM(Pluggable authentication module)  installation and configuration
+        sudo yum install gcc pam pam-devel make -y
+        sudo wget ftp://ftp.freeradius.org/pub/radius/pam_radius-x.x.x.tar.gz
+
+        sudo tar xvzf pam_radius-1.4.0.tar.gz(latest version at time of installation 1.4.0)
+
+         cd pam_radius-1.4.0
+
+        sudo ./configure
+
+         sudo make
+
+     2. 32 bit or 64 bit
+
+           a. 32 bit
+
+                  cp pam_radius_auth.so /lib/security/
+
+          b. 64 bit 
+
+                cp pam_radius_auth.so /lib64/security/
+
+    3. Enable Challenge Response Authentication and UsePAM to yes
+
+            sudo vi /etc/ssh/sshd_config
+
+           a. ChallengeResponseAuthentication yes
+
+           b. UsePAM yes
+
+    4. Edit pam.d
+
+      a. sudo vi /etc/pam.d/sshd
+
+      b. Edit to appear as below 
+
+    auth    required    pam_sepermit.so
+    auth    required    pam_radius_auth.so
+    #auth   substack    password-auth
+    auth    include     password-auth
+
+ 5. create directory 
+
+    a.sudo mkdir /etc/raddb
+
+ 6. Edit this to add radius Server details
+
+    a.sudo vi /etc/raddb/server
+
+    b.Add the following values. 
+
+    Server             Secret      Timeout
+    10.180.104.175     #######    60
+
+ 7. Test MFA 
+
+   ssh userid@pgcitlib01.pgac.com
+
+
+
+Ubuntu
+Add to Domain
+
+    Install packages:
+
+        apt-get update
+
+        apt-get -y install realmd sssd sssd-tools samba-common krb5-user packagekit samba-common-bin samba-libs adcli ntp
+
+    Point resolver to DNS:
+        PGAC Domain
+            vi /etc/resolv.conf 
+            search pgac.com
+            nameserver 172.23.2.98
+            nameserver 172.23.2.96
+        ERBB Domain
+            vi /etc/resolv.conf
+            search erbb.pgc
+            nameserver 172.23.30.11
+            nameserver 172.23.30.12
+    Join Ubuntu to Windows Domain
+
+        realm join --user=administrator pgac.com
+            To verify a successful join:
+                realm list
+            If not successful add -v to end of realm command for a verbose output
+            This adds the machine to the "Computers" OU in Active Directory
+
+    To use short usernames vs FQDN
+        vi /etc/sssd/sssd.conf 
+        Change: 
+
+            use_fully_qualified_names = True
+
+            fallback_homedir = /home/%d/%u
+
+        To:
+
+            use_fully_qualified_names = False
+
+            fallback_homedir = /home/%u
+
+        Restart SSSD
+
+            service sssd restart
+    Test ssh access
+        ssh username@localhost
+            Where username is a valid AD username
+            To check group membership
+                id
+    Control server access
+        Standard Configuration:
+            realm permit -g "VMware-Linux Admins"
+            realm permit -g "Domain Admins"
+        Options:
+            Grant access to a user:
+                realm permit username
+            Grant access to a group:
+                pgac
+                    realm permit -g group@pgac.com
+                erbb
+                    realm permit -g group@erbb.pgc
+            Reset or grant everyone access:
+                realm permit --all
+            Remove a user:
+                realm permit --withdraw username
+            List access permissions
+                realm list
+                Eg: login-policy: allow-realm-logins
+    Grant Sudoers access
+        vi /etc/sudoers.d/sudoers
+
+            %vmware-linux\ admins ALL=(ALL) ALL
+            %domain\ admins ALL=(ALL) ALL
+        Test logging into server with domain creds and "sudo su" to root
+
+Remove from Domain
+
+    realm leave pgac.com
+
+

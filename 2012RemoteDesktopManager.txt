@@ -1,0 +1,9 @@
+Server 2012 R2 Remote Desktop Manager:
+
+just type in a command prompt from any machine on the network:
+
+query session /server:<ServerName>
+
+To disconnect the session, type:
+
+reset session <SessionID> /server:<ServerName>

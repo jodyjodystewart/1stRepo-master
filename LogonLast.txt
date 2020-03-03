@@ -1,0 +1,5 @@
+ echo %date%,%time%,%username%,logon,%computername% >> \\server\logon$\logons.csv 
+
+
+
+get-eventlog "Security" | where {$_.Message -like "*Username*" -AND "Source Network Address"} | export-csv C:\Temp\test.csv

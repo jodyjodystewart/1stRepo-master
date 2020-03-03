@@ -1,0 +1,1 @@
+forfiles /p "F:\CRP-365Arc_Logs" /s /m *.log /c "cmd /c Del @path" /d -1

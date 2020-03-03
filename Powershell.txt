@@ -1,0 +1,15 @@
+Finding someone's account, seeing where it has been logged in, service account, etc...
+
+Get-EventLog –log Security | Where {$_.message –match "Account Name: *jsmith”}
+
+Get-EventLog –log Security | Where {$_.message –like “*Account Name: *jsmith*”}
+
+	
+Get-WinEvent -ComputerName dc04 -FilterHashtable @{logname='security';id=4740}
+
+Get-ADUser -Identity afuller
+
+PowerShell
+
+Get-WinEvent -ComputerName dc01 -FilterHashtable @{logname='security';id=4740;userid='S-1-5-21-3309960685-2715817658-858357121-1407'}
+

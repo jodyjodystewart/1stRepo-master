@@ -1,0 +1,6 @@
+PS F:\CRP-365Arc_Logs> get-childitem -path f:\crp-365arc_Logs -recurse -include *.log|where {$_.LastWriteTime -lt (date).addminutes(-60)}
+
+
+get-childitem -path f:\crp-365arc_Logs -recurse -include *.log|where {$_.LastWriteTime -lt (date).addminutes(-60)}|remove-item
+
+

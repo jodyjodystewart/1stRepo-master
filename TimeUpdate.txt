@@ -1,0 +1,5 @@
+w32tm.exe /config /manualpeerlist:"0.us.pool.ntp.org 1.us.pool.ntp.org" /syncfromflags:manual /reliable:YES /update
+
+w32tm.exe /config /update
+
+Restart-Service w32time

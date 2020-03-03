@@ -1,0 +1,5 @@
+SysInternals - CD into Sysinternals folder (PSTools)
+
+psloggedon.exe (username)
+
+Example: psloggedon.exe jstewart_admin

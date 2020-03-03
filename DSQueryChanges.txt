@@ -1,0 +1,14 @@
+Using ADSIEdit
+Using Active Directory PowerShell cmdlet
+Using DSQuery
+DSQuery is the preferred way to check the values of these two attributes quickly. To check WhenCreated and WhenChanged values for an object, type the following command:
+
+DSQuery * “CN=TestUser,CN=Users,DC=<YourDomainName>, DC=<Com>” –Attr WhenCreated  WhenChanged
+
+In the above command, we are checking values for a user account which resides in the Users container. When executed, the command returns the following output:
+
+WhenCreated,                     WhenChanged
+
+05/20/2013 05:01:23         06/28/2013 06:20:23
+
+About Nirmal Sharma
