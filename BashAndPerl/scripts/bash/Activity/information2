@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cat /dev/stdin|cat
+
+echo "Your name is $1"

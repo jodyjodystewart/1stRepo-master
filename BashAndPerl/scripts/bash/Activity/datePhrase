@@ -1,0 +1,27 @@
+#!/bin/bash
+
+day=$( date | awk '{ print $1 }')
+
+case $day in 
+ Fri)
+ echo TGIF
+ ;;
+ Sat)
+ echo "No Bay City Rollers stuff!!"
+ ;;
+ Sun)
+ echo "Easy like a Sunday morning."
+ ;;
+ Thu)
+ echo "Day of Thunder"
+ ;;
+ Wed)
+ echo "All-Father"
+ ;;
+ Tue)
+ echo "Don't get your hand bit off."
+ ;;
+ Mon)
+ echo "Moon over Bourbon Street."
+ ;;
+esac

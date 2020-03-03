@@ -1,0 +1,10 @@
+#!/bin/bash
+
+echo "What's your name? "
+read name
+
+echo "What's your favorite submission? "
+read submission
+
+echo "My name is $name and I like $submission "
+echo "I also drive a $1 and play a lot of $2"

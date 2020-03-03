@@ -1,0 +1,13 @@
+#!/bin/bash
+
+let a=13+25
+echo $a
+
+
+let b=42+90
+echo $b
+
+echo $a+$b
+
+c=$( expr $a \* $b )
+echo $c

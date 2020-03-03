@@ -1,0 +1,13 @@
+total 32
+-rw-r--r--. 1 root root   0 Aug 21 14:02 2018-08-21_txt
+-rw-r--r--. 1 root root  50 Aug 16 10:01 activity1
+-rw-r--r--. 1 root root  83 Aug 22 10:02 awkdoc
+-rw-r--r--. 1 root root 202 Aug 21 14:29 information
+-rw-r--r--. 1 root root  56 Aug 22 09:45 information2
+-rw-r--r--. 1 root root   0 Aug 22 10:02 lldoc
+-rw-r--r--. 1 root root 198 Aug 22 09:47 mysampledata
+-rw-r--r--. 1 root root  30 Aug 21 14:43 one
+-rw-r--r--. 1 root root  71 Aug 16 10:28 random
+-rw-r--r--. 1 root root 227 Aug 17 12:17 random2
+-rw-r--r--. 1 root root   0 Aug 21 14:07 three
+-rw-r--r--. 1 root root   0 Aug 21 14:07 two

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+echo "How many characters? "
+read fname
+
+grep -o -w -E "^[[:alnum:]]{$fname}" /usr/share/dict/words
+#sed -i 's/4//g' random_NEW
+#bash /data/scripts/bash/Activity/random_NEW
+#sed -i 's/echo `$fname`/4/g' random_NEW

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+ls -l >/data/scripts/bash/Activity/lldoc
+awk '{print $7 $8 $9}' lldoc

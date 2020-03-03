@@ -1,0 +1,6 @@
+#!/bin/sh
+for i in `cat userlist`
+do
+echo $i|chage -d 0 $i
+echo "Password for $username must change after first logon!"
+done

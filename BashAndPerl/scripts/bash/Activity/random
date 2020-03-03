@@ -1,0 +1,3 @@
+#!/bin/bash
+
+cat /usr/share/dict/words -n | head -n $RANDOM |tail -n 1

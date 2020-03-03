@@ -1,0 +1,8 @@
+#!/bin/bash
+
+greeting="Hello"
+user=$(whoami)
+day=$(date +%A)
+
+echo "$greeting there, $user!  Today is $day, which is also two days after the day before yesterday."
+echo "Curently, our Bash version is:  $BASH_VERSION.  Out!"

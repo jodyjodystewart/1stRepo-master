@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [  $RANDOM -lt 23479 ] && [ $RANDOM -gt 134 ]
+  then 
+  echo $RANDOM
+#  elif[ $RANDOM -gt 22 ]
+#  then
+#  echo $RANDOM
+
+else
+  echo "Cannot print anything."
+fi

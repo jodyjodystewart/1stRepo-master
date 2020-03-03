@@ -1,0 +1,7 @@
+#!/bin/sh
+for i in `more userlist `
+do
+echo $i
+echo $i:Lincare1234|chpasswd
+echo; echo "User $username’s password changed!"
+done

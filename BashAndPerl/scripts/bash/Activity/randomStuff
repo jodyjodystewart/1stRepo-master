@@ -1,0 +1,6 @@
+#!/bin/bash
+
+echo $RANDOM
+
+a=$( expr  $RANDOM % 125 )
+echo $a
